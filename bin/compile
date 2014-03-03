@@ -60,7 +60,7 @@ cd $build_dir
 if test -d $build_dir/node_modules; then
   status "Found existing node_modules directory; skipping cache"
   status "Rebuilding any native dependencies"
-  npm rebuild 2>&1 | indent
+  npm rebuild --verbose 2>&1 | indent
 elif test -d $cache_dir/node_modules; then
   status "Restoring node_modules directory from cache"
   cp -r $cache_dir/node_modules $build_dir/
@@ -78,7 +78,7 @@ fi
 
   status "Installing dependencies"
   # Make npm output to STDOUT instead of its default STDERR
-  npm install --userconfig $build_dir/.npmrc --production 2>&1 | indent
+  npm install --verbose --userconfig $build_dir/.npmrc --production 2>&1 | indent
 )
 
 status "Caching node_modules directory for future builds"
